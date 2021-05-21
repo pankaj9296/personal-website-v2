@@ -1,0 +1,73 @@
+$modal-content-width: 640px !default
+$modal-content-margin-mobile: 20px !default
+$modal-content-spacing-mobile: 160px !default
+
+$medium: 768px
+
+.full-screen
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+
+.modal 
+    position: fixed
+    align-items: center
+    display: none
+    flex-direction: column
+    justify-content: center
+    z-index: 1050
+    @extend .full-screen
+    &.is-active
+        display: flex
+        animation: popup 0.2s
+    &.is-disabled
+        display: flex
+        animation: popout 0.2s
+
+.modal-background
+    opacity: 0.65
+    background-color: #000
+    position: fixed
+    @extend .full-screen
+    z-index: 1040
+
+.modal-content
+    margin: 0 $modal-content-margin-mobile
+    max-height: calc(100vh - #{$modal-content-spacing-mobile})
+    overflow: auto
+    position: relative
+    width: 100%
+    background-color: white
+    border-radius: 1rem;
+    padding: 2rem 3rem;
+    @media screen and (min-width: $medium)
+        width: $modal-content-width
+    
+.modal-close
+    position: absolute
+    right: 5vw
+    top: 5vh
+    height: 32px
+    width: 32px
+    color: white
+    display: flex
+    align-items: center
+    justify-content: center
+    color: white
+    border-radius: 16px
+    &:hover
+        background-color: white
+        color: dimgrey
+
+@keyframes popup
+    0%
+        transform: scale(0)
+    100% 
+        transform: scale(1)
+
+@keyframes popout
+    0%
+        transform: scale(1)
+    100% 
+        transform: scale(0)
